@@ -1,0 +1,111 @@
+// Змінні кольорів для тем
+$primary-color: #007bff;
+$secondary-color: #333;
+$text-color: #333;
+
+$light-bg: #ffffff;
+$light-text: #333;
+
+$dark-bg: #333;
+$dark-text: #ffffff;
+
+// Змінні для розмірів
+$header-font-size: 3.5rem;
+$button-radius: 30px;
+$button-font-size: 1.2rem;
+
+// Міксин для теми
+@mixin theme($bg-color, $text-color) {
+    background-color: $bg-color;
+    color: $text-color;
+}
+
+// Міксин для кнопок
+@mixin button-style {
+    font-size: $button-font-size;
+    padding: 10px 20px;
+    border-radius: $button-radius;
+    &:hover {
+        background-color: darken($primary-color, 10%);
+        color: white;
+    }
+}
+
+// Міксин для створення колонок
+@mixin col($num) {
+    width: percentage($num / 12);
+}
+
+// Навігаційне меню
+.navbar-light .navbar-nav .nav-link {
+    font-weight: 500;
+    color: $text-color;
+    &:hover {
+        color: $primary-color;
+    }
+}
+
+// Основний заголовок
+header {
+    @include theme($primary-color, white);
+    background-image: url('images/header-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+
+    h1 {
+        font-size: $header-font-size;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    p {
+        font-size: 1.2rem;
+        margin-top: 20px;
+    }
+}
+
+// Секції
+section {
+    padding: 60px 0;
+
+    h2 {
+        font-size: 2.5rem;
+        margin-bottom: 40px;
+    }
+}
+
+section#features .col-md-4 {
+    text-align: center;
+    margin-bottom: 30px;
+
+    h3 {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+    }
+}
+
+// Кнопки
+.btn {
+    @include button-style;
+}
+
+// Теми
+.light-theme {
+    @include theme($light-bg, $light-text);
+}
+
+.dark-theme {
+    @include theme($dark-bg, $dark-text);
+}
+
+// Адаптивність
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.5rem;
+    }
+
+    header p {
+        font-size: 1rem;
+    }
+}
